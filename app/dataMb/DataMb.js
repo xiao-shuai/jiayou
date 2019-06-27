@@ -1,23 +1,26 @@
 import { observable, action } from "mobx";
 class AllData{
     @observable text;
-    @observable order;
+    @observable List;
     constructor(){
     this.text='33'
-    // this.order=[
-    //     {
-    //         name:'Billy',
-    //         company:'BTK',
-    //         address:'HUILONGGUAN',
-    //         phone:'18765345678',
-    //         start_time:'2019-4-6',
-    //         end_time:'2019-4-7',
-    //         build:'A',
-    //         note:'',
-    //     },
-    // ]
-    }
+    this.List=[
+        {
+         nm:'mark',
+         ph:'16787645679',
+         ad:'shanxiyuncheng',
+         com:'DFG',
+         start:'2019-6-6',
+         end:'2019-6-8'
+        }
+    ]
    
+    }
+
+  save_home_list=(e)=>{
+     this.List.push(e)
+  }  
+    
   
 
 }

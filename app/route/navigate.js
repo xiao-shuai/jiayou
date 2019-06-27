@@ -14,8 +14,10 @@ import {
 } from  '../index'
  import {yangs} from  '../yangshi'
  import AAAbout from '../AAAbout'
-
- const DiBu=createBottomTabNavigator(
+ import LLogin from '../LLogin'
+ import Zhuce from '../Zhucc'
+import Zhucc from '../Zhucc';
+ const llllyyy=createBottomTabNavigator(
     {
         Home:Home,
         Address:Twoo,
@@ -46,9 +48,9 @@ import {
       }
  )
 
- const Route =createStackNavigator({
-      DiBu:{
-        screen:DiBu,
+ const aswqRoute =createStackNavigator({
+      llllyyy:{
+        screen:llllyyy,
         navigationOptions:()=>({
             header:null,
             headerBackTitle:null,
@@ -72,11 +74,25 @@ import {
     OrderList:{
         screen:OrderList,
         navigationOptions:()=>({
-            title:'About us'
+            title:'OrderList'
             
         })
       },
+      Zhucc:{
+        screen:Zhucc,
+        navigationOptions:()=>({
+            title:'registered'    
+        })
+      },
+      LLogin:{
+        screen:LLogin,
+        navigationOptions:()=>({
+            // title:'registered'  
+            header:null  
+        })
+      },
+
 
  })
 
- export default createAppContainer(Route)
+ export default createAppContainer(aswqRoute)

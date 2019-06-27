@@ -39,8 +39,26 @@ class AAAbout extends Component{
        return(
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
         <View style={{flex:1,width:'100%',alignItems:'center'}}>
-            
-
+           <View style={{width:'100%',height:yangs.hg*.25,
+           alignItems:'center',justifyContent:'center',
+        //    backgroundColor:'gold'
+           }}>
+               <Image source={require('../app/images/suder.png')} 
+               resizeMode={'contain'}
+               style={{
+                   width:yangs.wd*.25,height:yangs.wd*.3
+               }}/>
+               <Text>v 1.0</Text>
+            </View> 
+            <View style={{width:yangs.wd,height:yangs.hg*.03,backgroundColor:yangs.themehui}}></View>
+            <View style={{padding:10}}>
+                <Text style={{fontSize:yangs.wd*.05,color:yangs.themeColor,
+                    lineHeight:30,letterSpacing:1,textAlignVertical:'center',alignSelf:'flex-start'}}>
+                Our APP is an online reservation APP created by suder company, which is convenient 
+                for business communication and saves your time. If you have any questions or Suggestions, please contact 010-7867465
+                </Text>
+            </View>
+         
         </View>
 
         <Toast

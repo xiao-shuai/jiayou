@@ -7,11 +7,12 @@ import {
     ScrollView,
     StyleSheet,
     ActivityIndicator,
-    TextInput,AsyncStorage,Platform,
+    TextInput,AsyncStorage,
     SafeAreaView
 } from 'react-native'
 import {observer,inject} from 'mobx-react';
 import {yangs} from '../yangshi'
+import {NavigationActions} from 'react-navigation'
 import { Input ,Button} from 'react-native-elements';
 import DatePicker from 'react-native-datepicker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -23,7 +24,7 @@ class Home extends Component{
         super(props)
         this.state={
              date:"",
-             data2:"",
+             date2:"",
         }
     }
     dottoday=()=>{
@@ -36,8 +37,67 @@ class Home extends Component{
         this.setState({date:aaafinal,date2:aaafinal})
       } 
 
+      fetchLatestData() {
+        this.setState({
+          refreshing: true
+        });
+        this.fetchData(0).then(movieList => {
+          this.setState({
+            movieList,
+            hasMore: movieList.length != 0,
+            refreshing: false
+          });
+        });
+      }
+
+      fetchMoreData() {
+        this.fetchData(this.lastOneId).then(newMovieList => {
+          let movieList = this.state.movieList.concat(newMovieList);//push只能传元素.concat才能传数组
+          this.setState({
+            movieList,
+            hasMore: newMovieList.length != 0
+          });
+        });
+      }
+
+      fetchData(id) {
+        return getMovieList(id).then(movieList => movieList.filter(movie => !!movie.cover)).then(movieList => {
+          if (movieList && movieList.length > 0) {
+            this.lastOneId = movieList[movieList.length - 1].id;//记录下来
+          } else {
+            this.lastOneId = -1;
+          }
+          return movieList;
+        });
+      }
+
+      onPress(movieData) {
+        getNavigator().push({
+          name: 'MovieDetailPage',
+          simpleMovieData: movieData
+        });
+      }
+      renderSeparator(sectionID, rowID) {
+        return (
+          <View key={rowID} style={styles.separatorView}/>
+        );
+      }
+
      componentDidMount(){
          this.dottoday()
+      }
+      componentWillMount(){
+        AsyncStorage.getItem('qqq').then(res=>{
+          console.log('sds',res)
+         if(res==null) {
+          this.props.navigation.reset([NavigationActions.navigate({ routeName: 'LLogin' })], 0)
+         }
+              
+        }
+        ).catch(err=>{
+          console.log('weeer',err)
+
+        })
       }
 
   ttt=()=>{
@@ -53,6 +113,17 @@ class Home extends Component{
       }else if(this.state.com==undefined){
          return this.refs.toast.show('Please enter the company',1000) 
       }
+
+      let hjh={
+         nm:this.state.nm,
+         ph:this.state.ph,
+         ad:this.state.ad,
+         com:this.state.com,
+         start:this.state.date,
+         end:this.state.date2
+      }
+      this.props.allData.save_home_list(hjh)
+      this.props.navigation.navigate('OrderList')
     
       
 
@@ -133,7 +204,7 @@ class Home extends Component{
         mode="date"
         placeholder="select date"
         format="YYYY-MM-DD"
-        minDate={this.state.data2}
+        minDate={this.state.date2}
         maxDate="2020-06-01"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"

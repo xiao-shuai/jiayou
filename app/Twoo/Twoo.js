@@ -48,6 +48,36 @@ class Twoo extends Component{
      componentDidMount(){
          
       }
+      
+     
+      onBeyondRange(num) {
+        if (num < 0) {
+          Toast.show('右拉刷新界面');
+        } else {
+          Toast.show('左滑进入往期列表');
+          getNavigator().push({
+            name: 'BeforeMonthList',
+            ...(appearTime.music),
+            onPress: this.onPress
+          });
+        }
+      }
+      onPress(rowData) {
+        // rowData[0] year
+        // rowData[1] month 0~11
+        //跳转到新的页面
+        getNavigator().push({
+          name: 'MusicListPage',
+          year: rowData[0],
+          month: rowData[1]
+        });
+      }
+      onRightPressed() {
+        getNavigator().push({
+          name: 'MyGithubPage'
+        });
+      }
+    
   render(){
       console.log('qwq',this.props.allData.text)
        return(
@@ -57,7 +87,7 @@ class Twoo extends Component{
          {
            this.qwr.map((i,j)=>{
             return(
-                <View style={{width:yangs.wd*.9,marginTop:20}}>
+                <View style={{width:yangs.wd*.9,marginTop:20}} key={j}>
                 <Badge value={i.title} badgeStyle={{width:'100%',height:yangs.hg*.05}} 
                  textStyle={{fontSize:yangs.wd*.05}}
                 />

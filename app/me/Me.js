@@ -30,12 +30,14 @@ class Me extends Component{
         this.tab=[
             {
               n:'Order',
+              itempagee:'OrderList'
             },
             {
              n:'Cache',
             },
             {
              n:'About',
+             itempagee:'AAAbout'
             }
         ]
     }
@@ -70,9 +72,9 @@ class Me extends Component{
         {
             this.tab.map((i,m)=>{
                  return(
-                     <TouchableOpacity style={{width:'100%',padding:15,
+                     <TouchableOpacity key={m} style={{width:'100%',padding:15,
                      backgroundColor:'white',marginTop:m==0?20:5,}} onPress={()=>{
-                         m==1?this.clearCache():null
+                         m==1?this.clearCache():this.props.navigation.navigate(i.itempagee)
                      }}>
                           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
                          <Text style={{fontSize:yangs.wd*.05,fontWeight:'500',color:yangs.themeColor}}>{i.n}</Text>
@@ -91,6 +93,9 @@ class Me extends Component{
         
        <Button title={'Sign out'} buttonStyle={{
            marginTop:20,width:yangs.wd*.95
+       }} onPress={()=>{
+           this.props.navigation.navigate('LLogin')
+           AsyncStorage.removeItem('qqq')
        }}/>
            </View>
        </SafeAreaView>
