@@ -88,7 +88,7 @@ class Home extends Component{
       }
       componentWillMount(){
         AsyncStorage.getItem('qqq').then(res=>{
-          console.log('sds',res)
+          // console.log('sds',res)
          if(res==null) {
           this.props.navigation.reset([NavigationActions.navigate({ routeName: 'LLogin' })], 0)
          }
@@ -113,6 +113,13 @@ class Home extends Component{
       }else if(this.state.com==undefined){
          return this.refs.toast.show('Please enter the company',1000) 
       }
+
+  
+    fetch('https://easy-mock.com/mock/5d1472a93b2ae07e7cd63f3d/psuhdata',
+    {method:'POST'})
+    .then(res=>res.json())
+    .then(res=>{})
+    .catch(eree=>{})
 
       let hjh={
          nm:this.state.nm,
@@ -228,7 +235,7 @@ class Home extends Component{
            placeholder={'optional'}
          />
          <Button  title={'submit'} buttonStyle={{
-              width:yangs.wd*.95,marginTop:20
+              width:yangs.wd*.95,marginTop:20,bottom:10
           }} onPress={()=>{this.ttt()}}/>
           </KeyboardAwareScrollView>
           

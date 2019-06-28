@@ -1,9 +1,8 @@
 import { observable, action } from "mobx";
 class AllData{
-    @observable text;
+    
     @observable List;
-    constructor(){
-    this.text='33'
+    constructor(){ 
     this.List=[
         {
          nm:'mark',

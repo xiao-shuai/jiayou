@@ -29,7 +29,9 @@ class OrderList extends Component{
    
 
      componentDidMount(){
-       
+       fetch('https://easy-mock.com/mock/5d1472a93b2ae07e7cd63f3d/listddda')
+       .then(res=>res.json())
+       .then(res=>{}).catch(ww=>{})
       }
 
   

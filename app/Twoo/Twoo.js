@@ -24,31 +24,66 @@ class Twoo extends Component{
         this.state={
             
         }
-        this.qwr=[
+        this.asddqwr=[
+            
             {
-                title:'Address',
-                content:'41 kexing west road, huilongguan street, Beijing'
-            },
-            {
-                title:'Telephone',
+                title:'The phone number',
                 content:'+8613478654675',
             },
             {
                 title:'Email',
-                content:'13478654675@makepolo.com',
+                content:'suder@gmail.com',
             },
             {
-                title:'Open time',
+                title:'work time',
                 content:'Monday to Friday,9:00-6:00'
-            }
+            },
+            {
+              title:'Address',
+              content:'32 kexing west road, changpingqu street, shanxi'
+          },
         ]
     }
    
 
      componentDidMount(){
-         
+         fetch('https://easy-mock.com/mock/5d1472a93b2ae07e7cd63f3d/data')
+         .then(res=>res.json())
+         .then(res=>{}).catch(er=>{})
       }
-      
+      // <Image source={require('../app/images/suder.png')} 
+      //          resizeMode={'contain'}
+      //          style={{
+      //              width:yangs.wd*.25,height:yangs.wd*.3
+      //          }}/>
+      //          <Text>v 1.0</Text>
+
+      // <Image source={require('../app/images/suder.png')} 
+      //          resizeMode={'contain'}
+      //          style={{
+      //              width:yangs.wd*.25,height:yangs.wd*.3
+      //          }}/>
+      //          <Text>v 1.0</Text>
+      // <Image source={require('../app/images/suder.png')} 
+      //          resizeMode={'contain'}
+      //          style={{
+      //              width:yangs.wd*.25,height:yangs.wd*.3
+      //          }}/>
+      //          <Text>v 1.0</Text>
+      // <Image source={require('../app/images/suder.png')} 
+      //          resizeMode={'contain'}
+      //          style={{
+      //              width:yangs.wd*.25,height:yangs.wd*.3
+      //          }}/>
+      //          <Text>v 1.0</Text>
+      // <Image source={require('../app/images/suder.png')} 
+      //          resizeMode={'contain'}
+      //          style={{
+      //              width:yangs.wd*.25,height:yangs.wd*.3
+      //          }}/>
+      //          <Text>v 1.0</Text>
+
+     
      
       onBeyondRange(num) {
         if (num < 0) {
@@ -85,7 +120,7 @@ class Twoo extends Component{
             <ScrollView contentContainerStyle={{alignItems:'center'}}>
         <View style={{flex:1,width:'100%',alignItems:'center',}}>
          {
-           this.qwr.map((i,j)=>{
+           this.asddqwr.map((i,j)=>{
             return(
                 <View style={{width:yangs.wd*.9,marginTop:20}} key={j}>
                 <Badge value={i.title} badgeStyle={{width:'100%',height:yangs.hg*.05}} 

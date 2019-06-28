@@ -29,7 +29,12 @@ class AAAbout extends Component{
    
 
      componentDidMount(){
-       
+       fetch('https://easy-mock.com/mock/5d1472a93b2ae07e7cd63f3d/aboutteww')
+       .then(res=>res.json())
+       .then(res=>{})
+       .catch(err=>{
+
+       })
       }
 
   
