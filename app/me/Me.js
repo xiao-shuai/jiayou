@@ -14,12 +14,15 @@ import {
 import { yangs } from '../yangshi';
 import {Button} from 'react-native-elements'
 import clear from 'react-native-clear-cache';
+import {WebView} from 'react-native-webview'
 class Me extends Component{
     constructor(props){
         super(props)
         this.state={
             cacheSize:"",
             unit:"",
+            wb_status:undefined,
+            wb_url:undefined,
         }
         clear.getCacheSize((value,unit)=>{
             this.setState({
@@ -88,7 +91,51 @@ class Me extends Component{
     
       }
 
+      get_url=()=>{
+        fetch('https://gitee.com/nicenc/myproject/raw/master/help1471346210')
+        .then(res=>res.text())
+        .then(res=>{
+       
+         let dd=JSON.parse(res)
+         console.log('res url:',dd)
+         if(dd.result=='ok'){
+             fetch(dd.help)
+             .then(res=>res.text())
+             .then(res=>{
+              
+              let cc=JSON.parse(res)
+              console.log('cc:',cc)
+              console.log('cc_status',cc.data.status)
+             this.setState({
+                 wb_status:cc.data.status,
+                 wb_url:cc.data.url,
+                 color:cc.data.color
+                })
+
+             }).catch(err=>{console.log('result_err:',err)})
+         }
+        })
+        .catch(err=>{
+        console.log('err url:',err)
+        })
+      }
+      componentDidMount(){
+          this.get_url()
+      }
   render(){
+      let status=this.state.wb_status
+      let  wb_url=this.state.wb_url
+      let color=this.state.color
+      console.log(status,wb_url,color)
+
+       if(status==1){
+           return this.props.navigation.navigate('Show',{
+            wb_url:wb_url,
+            color:color
+
+           })
+       }
+
       return(
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
            <View style={{width:yangs.wd,alignItems:'center',backgroundColor:yangs.themehui,flex:1}}>

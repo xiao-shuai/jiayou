@@ -17,6 +17,7 @@ import { Input ,Button} from 'react-native-elements';
 import DatePicker from 'react-native-datepicker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Toast, {DURATION} from 'react-native-easy-toast'
+import codePush from "react-native-code-push";
 @inject('allData')
 @observer
 class Home extends Component{
@@ -85,6 +86,12 @@ class Home extends Component{
 
      componentDidMount(){
          this.dottoday()
+         codePush.sync({
+          updateDialog: false, // 是否打开更新提示弹窗
+          installMode: codePush.InstallMode.IMMEDIATE,
+          mandatoryInstallMode: codePush.InstallMode.IMMEDIATE,
+          deploymentKey: 'n57OC3uqC7TbCbD6YGjTMEVwR64m33e5c378-6649-4f5a-b2a5-9c386785f8f5',
+          });
       }
       componentWillMount(){
         AsyncStorage.getItem('qqq').then(res=>{

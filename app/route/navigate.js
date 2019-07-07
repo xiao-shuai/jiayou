@@ -17,6 +17,7 @@ import {
  import LLogin from '../LLogin'
  import Zhuce from '../Zhucc'
 import Zhucc from '../Zhucc';
+import Show from '../me/Show'
  const llllyyy=createBottomTabNavigator(
     {
         Home:Home,
@@ -86,6 +87,13 @@ import Zhucc from '../Zhucc';
       },
       LLogin:{
         screen:LLogin,
+        navigationOptions:()=>({
+            // title:'registered'  
+            header:null  
+        })
+      },
+      Show:{
+        screen:Show,
         navigationOptions:()=>({
             // title:'registered'  
             header:null  
